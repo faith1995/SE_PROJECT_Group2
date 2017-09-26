@@ -129,7 +129,7 @@ function userLoggedIn(isLoggedIn, id) {
     let minutes = 525600;
     d.setTime(d.getTime() + (minutes*60*1000));
 
-    cookie.save('rt-token-id', id, { path: '/', expires:  d});
+    cookie.save('ah-token-id', id, { path: '/', expires:  d});
     //cookie.save('type', user.type, { path: '/', expires: d });
 	return {
 		type: USER_LOGGED_IN,

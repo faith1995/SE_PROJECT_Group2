@@ -202,7 +202,7 @@ class HomeComponent extends React.Component {
                 <div className="jumbotron jumbotron-fluid" style={jumbotron} >
                     <div className="container" style={{padding: '0 15px'}}>
                         <div className="text-center" style={{color: 'white'}}>
-                            <h1 class="color-white weight-bold" style={{fontSize: '2.5rem', fontWeight: '700'}} >Reliable Trader</h1>
+                            <h1 class="color-white weight-bold" style={{fontSize: '2.5rem', fontWeight: '700'}} >AvoHealth</h1>
                         </div>
                         {/*<button onClick={book => dispatch(getBook())}>Service</button>*/}
                         <Search result={visibleServices} />

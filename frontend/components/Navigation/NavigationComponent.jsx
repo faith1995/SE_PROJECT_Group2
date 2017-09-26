@@ -100,11 +100,10 @@ class NavigationComponent extends React.Component {
     	return (
 <div>
 
-	<nav className="navbar navbar-expand-lg navbar-light" style={{backgroundColor: 'white'}} >
+	<nav className="navbar navbar-expand-lg navbar-light" style={{backgroundColor: 'white', borderBottom: '1px solid forestgreen'}} >
     <div className="container">
 		<Link className="navbar-brand" to="/">
-			{/*Navbar*/}
-			<img src="../logo.png" style={{height: '1.7em'}} />
+			AvoHealth
 		</Link>
         <div>
             {/*<span className="mr-2 mobile-im-v" >

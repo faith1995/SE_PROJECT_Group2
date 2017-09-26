@@ -150,7 +150,8 @@ class LoginComponent extends React.Component {
 
         let url = {
             fontWeight: '400',
-            textDecoration: 'none'
+            textDecoration: 'none',
+            color: 'forestgreen'
         }
 
         //const { dispatch, loginResult } = this.props;
@@ -158,80 +159,72 @@ class LoginComponent extends React.Component {
         let {isLoginPending, isLoginSuccess, loginError } = this.props;
 
         let btnLogin = (isLoginPending) ? 
-            <button className="btn btn-primary btn-block" type="button" style={{backgroundColor: '#2a92c7', borderColor: '#2a92c7'}} disabled>
+            <button className="btn btn-primary btn-block" type="button" disabled>
                 <span className="fa fa-spinner fa-spin"></span> Please wait...
             </button>
             : 
-            <button className="btn btn-primary btn-block" type="submit" style={{backgroundColor: '#2a92c7', borderColor: '#2a92c7'}} >
+            <button className="btn btn-primary btn-block" type="submit" >
                 Login
             </button>;
 
         //alert(loginError);
         return (
             <div>
-                <div className="container">
+                <div className="container my-sm-4 my-2">
                     <div className="row ">
                         <div className="col-lg-8 col-lg-offset-4  " style={{margin: '0 auto', float: 'none'}}>
-                            <div className="card my-sm-4 my-2" style={cardS}>
-                                <div className="card-body">                                   
-                                    {/*<Login onAddClick={api => dispatch(login(api))} login={loginResult} />*/}
-                                    <div className="row">
-                                        <form className="col-sm-11 col-sm-offset-1" style={{margin: '0 auto', float: 'none'}} onSubmit={this.onSave.bind(this)} >
-                                            <h3 className="" style={{fontSize: '1.5rem', fontWeight: '600'}} >Log-in </h3>
-                                            <div className="form-row">
-                                                <div className="col-sm-12">
-                                                    <div className="form-group">
-                                                        <label for="inputEmail4" className="col-form-label">Email *</label>
-                                                        <input 
-                                                            type="text" 
-                                                            id="inputEmail4" 
-                                                            name="email"
-                                                            className="form-control" 
-                                                            placeholder="Email" 
-                                                            value={this.state.email}
-                                                            onChange={this.handleInputChange}
-                                                        />
-                                                    </div>
-                                                </div>
-
-                                                <div className="col-sm-12">
-                                                    <div className="form-group">
-                                                        <label for="inputPass" className="col-form-label">Password *</label>
-                                                        <input 
-                                                            type="password" 
-                                                            id="inputPass"
-                                                            name="password" 
-                                                            className="form-control" 
-                                                            placeholder="Password" 
-                                                            value={this.state.password}
-                                                            onChange={this.handleInputChange}
-                                                        />
-                                                    </div>
-                                                </div>                      
-                                            </div>
-
-                                            <div className="text-center mt-2">
-                                                {/*<button type="button" className="btn btn-primary btn-block" type="submit" style={{backgroundColor: '#2a92c7', borderColor: '#2a92c7'}}>
-                                                    <span className="ion-loading-a"></span> Login
-                                                </button>*/}
-                                                {btnLogin}
-                                            </div>
-
-                                            <div className="text-center mt-2">
-                                                {/*isLoginPending && <div>Please wait...</div>*/}    
-                                                {isLoginSuccess && <div>Success.</div>}
-                                                {loginError && <div>{loginError.message}</div>}
-                                            </div>
-
-                                            <div className="text-center mt-2">
-                                                <p className="pt-2" >Don't have an account? <Link to="/register" style={url}> Register</Link></p>
-                                                <Link className="pt-2" to="/reset" style={url}>Forgot password</Link>    
-                                            </div>
-                                        </form>
+                            <form onSubmit={this.onSave.bind(this)} >
+                                <h3 className="" style={{fontSize: '1.5rem', fontWeight: '600'}} >Log-in </h3>
+                                <div className="form-row">
+                                    <div className="col-sm-12">
+                                        <div className="form-group">
+                                            <label for="inputEmail4" className="col-form-label">Email *</label>
+                                            <input 
+                                                type="text" 
+                                                id="inputEmail4" 
+                                                name="email"
+                                                className="form-control" 
+                                                placeholder="Email" 
+                                                value={this.state.email}
+                                                onChange={this.handleInputChange}
+                                            />
+                                        </div>
                                     </div>
 
+                                    <div className="col-sm-12">
+                                        <div className="form-group">
+                                            <label for="inputPass" className="col-form-label">Password *</label>
+                                            <input 
+                                                type="password" 
+                                                id="inputPass"
+                                                name="password" 
+                                                className="form-control" 
+                                                placeholder="Password" 
+                                                value={this.state.password}
+                                                onChange={this.handleInputChange}
+                                            />
+                                        </div>
+                                    </div>                      
                                 </div>
-                            </div>
+
+                                <div className="text-center mt-2">
+                                    {/*<button type="button" className="btn btn-primary btn-block" type="submit" style={{backgroundColor: '#2a92c7', borderColor: '#2a92c7'}}>
+                                        <span className="ion-loading-a"></span> Login
+                                    </button>*/}
+                                    {btnLogin}
+                                </div>
+
+                                <div className="text-center mt-2">
+                                    {/*isLoginPending && <div>Please wait...</div>*/}    
+                                    {isLoginSuccess && <div>Success.</div>}
+                                    {loginError && <div>{loginError.message}</div>}
+                                </div>
+
+                                <div className="text-center mt-2">
+                                    <p className="pt-2" >Don't have an account? <Link to="/register" style={url}> Register</Link></p>
+                                    <Link className="pt-2" to="/reset" style={url}>Forgot password</Link>    
+                                </div>
+                            </form>
                         </div>
                     </div>     
                 </div>
@@ -240,11 +233,6 @@ class LoginComponent extends React.Component {
     }
 }
 
-/*function select(state) {
-    return {
-        loginResult: state.api
-    }
-}*/
 
 const mapStateToProps = (state) => {
     return {

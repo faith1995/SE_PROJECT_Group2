@@ -167,8 +167,8 @@ function login(state = {
 
 function loggedInStatus(state = 
 	{
-		isLoggedIn: (cookie.load('rt-token-id')) ? true : false, 
-		id: cookie.load('rt-token-id')
+		isLoggedIn: (cookie.load('ah-token-id')) ? true : false, 
+		id: cookie.load('ah-token-id')
 	}, action) {
 	switch (action.type) {
 		case USER_LOGGED_IN:
