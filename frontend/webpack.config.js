@@ -1,5 +1,7 @@
 var webpack = require('webpack');
 var CompressionPlugin = require('compression-webpack-plugin');
+const path = require('path');
+
 
 module.exports = {
     cache: true,
@@ -8,7 +10,7 @@ module.exports = {
     //target: 'node',
 
     output: {
-        path:'public',
+        path: path.join(__dirname, "/public"),
         filename: 'index.js',
         publicPath: '/'
     },
@@ -19,7 +21,7 @@ module.exports = {
             NODE_ENV: JSON.stringify('production')
           }
         }),
-        new webpack.optimize.DedupePlugin(), //dedupe similar code
+        //new webpack.optimize.DedupePlugin(), //dedupe similar code /removed from webpack 2
         new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.optimize.UglifyJsPlugin({
           compress: { warnings: false },

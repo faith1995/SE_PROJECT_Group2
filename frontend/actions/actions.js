@@ -253,7 +253,7 @@ export function login(email, password) {
 		dispatch(setLoginSuccess(false));
 		dispatch(setLoginError(null));
 
-        fetch('http://localhost/loop/Reliable/api/authenticate/login.php', 
+        fetch('http://localhost:8081/sendmail', 
 		{
 		    method: "POST",
 		    headers: {

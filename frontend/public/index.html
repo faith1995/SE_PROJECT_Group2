@@ -10,8 +10,13 @@
     <meta property="og:type" content="website">
     <meta property="og:image" content="Your-Image-Url">
     <meta property="og:description" content="Your-Page-Description">
-    <title>Reliable Trader | Home</title>
-    <link rel="shortcut icon" type="image/x-icon" href="http://loopdev.co.za/reliabletrader/images/theme-mountain-favicon.ico">
+    <title>AvoHealth | AvoSpace Company</title>
+
+    <!--<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">-->
+    
+
+    
+    <link rel="shortcut icon" type="image/x-icon" href="http://avospace.net/images/avo-icon.png">
 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700%7CLato:300,400,700" rel="stylesheet" type="text/css">
 
@@ -19,7 +24,7 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     
-    <link rel="stylesheet" href="https://cdn.rawgit.com/infostreams/bootstrap-select/fd227d46de2afed300d97fd0962de80fa71afb3b/dist/css/bootstrap-select.min.css" />
+
     
     <!--<script src="https://unpkg.com/react-input-autosize/dist/react-input-autosize.js"></script>
     <script src="https://unpkg.com/react-select/dist/react-select.js"></script>-->
@@ -27,24 +32,28 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" />
+
+    <link rel="stylesheet" href="/css/timeline.css">
     <style type="text/css">
-html {
-  height: 100%;
-  box-sizing: border-box;
-}
+        html {
+          height: 100%;
+          box-sizing: border-box;
+        }
 
-*,
-*:before,
-*:after {
-  box-sizing: inherit;
-}
+        *,
+        *:before,
+        *:after {
+          box-sizing: inherit;
+        }
 
-body {
-  position: relative;
-  margin: 0;
-  padding-bottom: 6.5em;
-  min-height: 100%;
-}
+        body {
+          position: relative;
+          margin: 0;
+          padding-bottom: 6.5em;
+          min-height: 100%;
+        }
 
         body {
             font-family: 'Open Sans', 'Raleway', 'Helvetica Neue', sans-serif;
@@ -52,35 +61,69 @@ body {
             /*background-color: #fafafa;*/
         }
 
-#map {
-height: 100%;
-}
+        .fixed-padding-top {
+            padding-top: 3.5em;
+        }
 
-#description {
-font-family: Roboto;
-font-size: 15px;
-font-weight: 300;
-}
+        .input-group .form-control {
+            z-index: 0;
+        }
 
-#infowindow-content .title {
-font-weight: bold;
-}
+        /*calender fix*/
+        .bootstrap-datetimepicker-widget table th {
+                height: 2em;
+                line-height: 2em;
+                width: 2em;
+            }
 
-#infowindow-content {
-display: none;
-}
+        .bootstrap-datetimepicker-widget table td.day {
+            height: 1.8em;
+            line-height: 1.8em;
+            width: 1.8em;
+        }
 
-#map #infowindow-content {
-display: inline;
-}
+        .bootstrap-datetimepicker-widget table td.active, .bootstrap-datetimepicker-widget table td.active:hover {
+            background-color: forestgreen;
+        }
 
-#title {
-        color: #fff;
-        background-color: #4d90fe;
-        font-size: 25px;
-        font-weight: 500;
-        padding: 6px 12px;
-      }
+        .bootstrap-datetimepicker-widget table td.today::before {
+            border-bottom-color: forestgreen;
+        }
+
+        .bootstrap-datetimepicker-widget table td span.active {
+            background-color: forestgreen;
+        }
+        /*calender fix*/
+
+        #map {
+        height: 100%;
+        }
+
+        #description {
+        font-family: Roboto;
+        font-size: 15px;
+        font-weight: 300;
+        }
+
+        #infowindow-content .title {
+        font-weight: bold;
+        }
+
+        #infowindow-content {
+        display: none;
+        }
+
+        #map #infowindow-content {
+        display: inline;
+        }
+
+        #title {
+            color: #fff;
+            background-color: #4d90fe;
+            font-size: 25px;
+            font-weight: 500;
+            padding: 6px 12px;
+          }
 
         .navbar-light .navbar-nav .nav-link {
             color: #9a9a9a;
@@ -218,7 +261,7 @@ display: inline;
             }
         }
 
-        @media (max-width: 576px) { 
+        /*@media (max-width: 576px) { 
             .container, .row {
                 padding: 0;
                 margin: 0;
@@ -242,7 +285,7 @@ display: inline;
             .card {
                 border-radius: 0;
             }
-        }
+        }*/
     </style>
 </head>
 
@@ -253,17 +296,18 @@ display: inline;
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
 
-    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>-->
-    <script src="https://cdn.rawgit.com/infostreams/bootstrap-select/fd227d46de2afed300d97fd0962de80fa71afb3b/dist/js/bootstrap-select.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
 
-    <script type="text/javascript">
+
+    <!--<script type="text/javascript">
         $(document).ready(function() {
             $('.selectpicker').selectpicker({
                 style: 'btn-default',
                 size: false
             });
         });
-    </script>
+    </script>-->
     
     <script src="/index.js"></script>
 </body>

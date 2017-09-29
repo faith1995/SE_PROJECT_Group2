@@ -92,7 +92,7 @@ class Search extends React.Component {
                     <div className="form-row">
                         
                         <div className="col-sm-6 mb-2">
-                            <div class="form-group">
+                            <div className="form-group">
                                 <small id="passwordHelpBlock" className="form-text" style={{color: 'white'}} >
                                     Select location
                                 </small>
@@ -111,7 +111,7 @@ class Search extends React.Component {
                         </div>
 
                         <div className="col-sm-6 mb-2">
-                            <div class="form-group">
+                            <div className="form-group">
                                 <small id="passwordHelpBlock" className="form-text" style={{color: 'white'}} >
                                     Select a service
                                 </small>
@@ -183,8 +183,8 @@ class HomeComponent extends React.Component {
         let jumbotron = {
             background: 'url("../home.jpg") no-repeat center center',
             WebkitBackgroundSize: '100% 100%',
-            mozBackgroundSize: '100% 100%',
-            oBackgroundSize: '100% 100%',
+            MozBackgroundSize: '100% 100%',
+            OBackgroundSize: '100% 100%',
             backgroundSize: '100% 100%',
             backgroundSize: 'cover',
             borderRadius: '0'
@@ -198,14 +198,14 @@ class HomeComponent extends React.Component {
         const { dispatch, visibleServices } = this.props;
         //alert(visibleServices);
         return (
-            <div>
+            <div className="fixed-padding-top">
                 <div className="jumbotron jumbotron-fluid" style={jumbotron} >
                     <div className="container" style={{padding: '0 15px'}}>
                         <div className="text-center" style={{color: 'white'}}>
-                            <h1 class="color-white weight-bold" style={{fontSize: '2.5rem', fontWeight: '700'}} >AvoHealth</h1>
+                            <h1 className="color-white weight-bold" style={{fontSize: '2.5rem', fontWeight: '700'}} >AvoHealth</h1>
                         </div>
                         {/*<button onClick={book => dispatch(getBook())}>Service</button>*/}
-                        <Search result={visibleServices} />
+                        {/*<Search result={visibleServices} />*/}
                         <br/><br/><br/>
                     </div>
                 </div>
