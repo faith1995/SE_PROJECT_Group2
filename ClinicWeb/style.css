@@ -1,0 +1,113 @@
+.banner-image {
+	height: 25rem;
+	object-fit: cover;
+	width: 100%;
+	filter: brightness(65%);
+}
+
+.row {
+	 margin: auto;
+	 text-align: center;
+}
+
+.row h2{
+	margin-top: 25px;
+	font-size: 25px;
+}
+
+.row2 {
+	 margin: auto;
+	 text-align: none;
+	}
+
+.row2 h1{
+	margin-top: 35px;
+	margin-bottom: 10px;
+}
+
+.container{
+	
+    margin: auto;
+    overflow: hidden;
+}
+
+#boxes{
+	margin-top: 20px;
+}
+
+#boxes .box{
+	float: left;
+	text-align: center;
+	width: 33%;
+	padding:10px;
+}
+
+#boxes .box .center{
+	 text-align: center;
+}
+
+#boxes .box .center a h2{
+	font-size: 18px;
+}
+
+#boxes .box a{
+	float : center;
+	margin-top: 15px;
+	width :80px;
+	height: 80px;
+	background: #fff;
+	text-align: center;
+	line-height: 80px;
+	font-size: 35px;
+	margin: 0 140px;
+	display: block;
+	border-radius: 50px;
+	position: relative;
+	overflow: hidden;
+	border: 3px solid #000000;
+}
+
+#boxes .box a .fa{
+	position: center;
+	color: #262626;
+	transition: .5s;
+}
+
+#boxes .box a:hover .fa{
+	transform: rotateY(360deg);
+}
+
+#boxes .box a:before {
+	content:'';
+	position: absolute;
+	top: 100%;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: #56ec8d;
+	transition: .5s;
+}
+
+#boxes .box a:hover:before{
+	top: 0;
+}
+
+#our-services {
+	margin-top: 30px;
+}
+
+#our-services .box{
+	float: left;
+	text-align: none;
+	width: 20%;
+	padding:10px;
+}
+
+#our-services .box a .rotate-icon{
+	transition: .5s;
+}
+
+#our-services .box a:hover .rotate-icon{
+	transform: rotateY(360deg);
+}
+
