@@ -35,22 +35,15 @@
 	margin-top: 20px;
 }
 
-#boxes .box{
-	float: left;
-	text-align: center;
-	width: 33%;
-	padding:10px;
-}
-
-#boxes .box .center{
+#boxes .col-sm-4 .center{
 	 text-align: center;
 }
 
-#boxes .box .center a h2{
+#boxes .col-sm-4 .center a h2{
 	font-size: 18px;
 }
 
-#boxes .box a{
+#boxes .col-sm-4 a{
 	float : center;
 	margin-top: 15px;
 	width :80px;
@@ -64,50 +57,53 @@
 	border-radius: 50px;
 	position: relative;
 	overflow: hidden;
-	
 }
 
-#boxes .box a .fa{
+#boxes .col-sm-4 a .fa{
 	position: center;
 	color: #262626;
 	transition: .5s;
 }
 
-#boxes .box a:hover .fa{
+#boxes .col-sm-4  a:hover .fa{
 	transform: rotateY(360deg);
 }
 
-#boxes .box a:before {
+#boxes .col-sm-4 a:before {
 	content:'';
 	position: absolute;
 	top: 100%;
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background: #42ae42;
+	background: forestgreen;
 	transition: .5s;
 }
 
-#boxes .box a:hover:before{
+#boxes .col-sm-4 a:hover:before{
 	top: 0;
 }
 
 #our-services {
 	margin-top: 30px;
+	filter: brightness(65%);
 }
 
-#our-services .box{
-	float: left;
+#our-services .col-sm-6{ 
 	text-align: none;
-	width: 20%;
-	padding:10px;
+    text-decoration: none;
 }
 
-#our-services .box a .rotate-icon{
+#our-services .col-sm-6 ul{
+	list-style: none;
+}
+
+
+#our-services .col-sm-6 a .rotate-icon{
 	transition: .5s;
 }
 
-#our-services .box a:hover .rotate-icon{
+#our-services .col-sm-6 a:hover .rotate-icon{
 	transform: rotateY(360deg);
 }
 

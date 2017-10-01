@@ -1,9 +1,46 @@
 
-
-.email-background{
-	max-width:500px;
+.logo{
+      margin-left: 42% ;
 }
 
-.email-backgroud a img{
-	max-width: 100%;
+ h2 a{
+	text-decoration: none;
+	color: forestgreen;
+}
+
+.Logo{
+	 height: 5em;
+	 width: 5em;
+}
+
+.ah-background {
+	background-color: forestgreen;
+	color: white;
+}
+
+.email-background{
+	margin: auto;
+	background-color: forestgreen;
+	width: 390px; 
+}
+
+.email-background .pre-header{
+	  padding-left: 10px;
+      color: white;
+}
+
+p {
+	padding-left: 10px;
+	color: white;
+}
+
+.smile-pic {
+	width: 100%;
+	height: 20em;
+	object-fit: cover;
+}
+
+.ah-jumbotron {
+	background-color: white;
+	color: forestgreen;
 }
