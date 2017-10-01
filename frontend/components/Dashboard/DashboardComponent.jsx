@@ -1,65 +1,32 @@
 import React from 'react';
 import { Router, Route, Link, IndexLink, hashHistory, browserHistory, IndexRoute  } from 'react-router';
 
-class Appoinment extends React.Component {
-    render() {
-        return (
-            <li>
-                <time className="cbp_tmtime" dateTime="2013-04-10 18:30"><span>4/10/13</span> <span>18:30</span></time>
-                <div className="cbp_tmicon ion-ios-person-outline"></div>
-                <div className="cbp_tmlabel">
-                    <h2>Firstname Lastname</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                </div>
-            </li>
-        );
-    }
-}
+import Specialist from './Specialist.jsx';
+import Guest from './Guest.jsx';
 
-class Timeline extends React.Component {
-    render() {
-        return (
-            <div className="main">
-                <ul className="cbp_tmtimeline">
-                    <Appoinment />
-                    <Appoinment />
-                    <Appoinment />
-                    <Appoinment />
-                    <Appoinment />
-                    <Appoinment />
-                    <Appoinment />
-                    <Appoinment />
-                    <Appoinment />
-                    <Appoinment />
-                </ul>
-            </div>
-        );
-    }
-}
+import { connect } from 'react-redux';
+import { login, logout } from '../../actions/actions';
 
-export default class ResetComponent extends React.Component {
-    componentWillMount() {
-        const script = document.createElement("script");
-        script.src = "../js/timeline.js";
-        script.async = true;
-        document.body.appendChild(script);
-    }
 
+class DashboardComponent extends React.Component {
     componentDidMount() {
         window.scrollTo(0,0);
     }
 
-    onSave(e) {
-        e.preventDefault();
-    }
-    
     render() {
         let url = {
             fontWeight: '400',
             textDecoration: 'none'
         }
 
-        return (
+        let {isLoggedIn, id, userType } = this.props;
+        if (isLoggedIn) {
+            return <Specialist />;
+        }else{
+            return <Guest />;
+        }
+        
+        /*return (
             <div className="fixed-padding-top" >
                 <div className="container my-sm-4 my-2">
 
@@ -73,7 +40,6 @@ export default class ResetComponent extends React.Component {
                     <a href="https://tympanus.net/codrops/category/blueprints/" className="bp-icon bp-icon-archive" data-info="Blueprints archive"><span>Go to the archive</span></a>
                 </nav>
             </header>   
-            {/*<Timeline />*/}
                 <div className="row">
                     <div className="col-sm-8">
                         <Timeline />
@@ -86,6 +52,22 @@ export default class ResetComponent extends React.Component {
 
                 </div>
             </div>
-        );
+        );*/
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        isLoggedIn: state.loggedInStatus.isLoggedIn,
+        id: state.loggedInStatus.id,
+        userType: state.loggedInStatus.userType
+    };
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        logout: () => dispatch(logout())
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(DashboardComponent);

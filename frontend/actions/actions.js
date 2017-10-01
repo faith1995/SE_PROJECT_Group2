@@ -14,20 +14,21 @@ export const REQUEST_STARTED = 'REQUEST_STARTED';
 export const REQUEST_SUCCEEDED = 'REQUEST_SUCCEEDED';
 export const REQUEST_FAILED = 'REQUEST_FAILED';
 
-export const POST_MYJOBSTARTED = 'POST_MYJOBSTARTED';
-export const POST_MYJOBSUCCEEDED = 'POST_MYJOBSUCCEEDED';
+export const POST_AppoinmentsTARTED = 'POST_AppoinmentsTARTED';
+export const POST_AppoinmentsUCCEEDED = 'POST_AppoinmentsUCCEEDED';
 export const POST_MYJOBFAILED = 'POST_MYJOBFAILED';
 
 export const REGISTER_CUSTOMER = 'REGISTER_CUSTOMER';
 export const CREATE_JOB = 'CREATE_JOB';
 
-export const ADD_JOBDETAILS = 'ADD_JOBDETAILS';
+export const ADD_BookAppoinment = 'ADD_BookAppoinment';
 export const ADD_CONTACTDETAILS = 'ADD_CONTACTDETAILS';
 
 //login 
 export const SET_LOGIN_PENDING = 'SET_LOGIN_PENDING';
 export const SET_LOGIN_SUCCESS = 'SET_LOGIN_SUCCESS';
 export const SET_LOGIN_ERROR = 'SET_LOGIN_ERROR';
+export const SET_LOGOUT = 'SET_LOGOUT';
 
 //register
 export const SET_REGISTER_PENDING = 'SET_REGISTER_PENDING';
@@ -37,75 +38,25 @@ export const SET_REGISTER_ERROR = 'SET_REGISTER_ERROR';
 export const USER_LOGGED_IN = 'USER_LOGGED_IN';
 
 //job details
-export const SET_JOB_DETAILS = 'SET_JOB_DETAILS';
-export const SET_JOB_DETAILS_PENDING = 'SET_JOB_DETAILS_PENDING';
-export const SET_JOB_DETAILS_SUCCESS = 'SET_JOB_DETAILS_SUCCESS';
-export const SET_JOB_DETAILS_ERROR = 'SET_JOB_DETAILS_ERROR';
+export const SET_BOOK_APPOINMENT = 'SET_BOOK_APPOINMENT';
+export const SET_BOOK_APPOINMENT_PENDING = 'SET_BOOK_APPOINMENT_PENDING';
+export const SET_BOOK_APPOINMENT_SUCCESS = 'SET_BOOK_APPOINMENT_SUCCESS';
+export const SET_BOOK_APPOINMENT_ERROR = 'SET_BOOK_APPOINMENT_ERROR';
 
 export const SET_CONTACT_DETAILS_PENDING = 'SET_CONTACT_DETAILS_PENDING';
 export const SET_CONTACT_DETAILS_SUCCESS = 'SET_CONTACT_DETAILS_SUCCESS';
 export const SET_CONTACT_DETAILS_ERROR = 'SET_CONTACT_DETAILS_ERROR';
 
-export const SET_MY_JOBS = 'SET_MY_JOBS';
-export const SET_MY_JOBS_PENDING = 'SET_MY_JOBS_PENDING';
-export const SET_MY_JOBS_SUCCESS = 'SET_MY_JOBS_SUCCESS';
-export const SET_MY_JOBS_ERROR = 'SET_MY_JOBS_ERROR';
+export const SET_APPOINMENTS = 'SET_APPOINMENTS';
+export const SET_APPOINMENTS_PENDING = 'SET_APPOINMENTS_PENDING';
+export const SET_APPOINMENTS_SUCCESS = 'SET_APPOINMENTS_SUCCESS';
+export const SET_APPOINMENTS_ERROR = 'SET_APPOINMENTS_ERROR';
 
 
 let nextTodoId = 0;
 
-export function addTodo(text){
-	alert('todo')
-	return {
-		type: ADD_TODO,
-		id: nextTodoId++,
-		text
-	};
-}
+let backendUrl = 'http://localhost/SE_PROJECT_Group2/backend';
 
-/*export function addJobDetails(data){
-	return {
-		type: ADD_JOBDETAILS,
-		data
-	}
-}
-
-export function addContactDetails(data){
-	return {
-		type: ADD_CONTACTDETAILS,
-		data
-	}
-}*/
-
-export function createJob(data){
-	//	alert(JSON.stringify(data));
-	return (dispatch, getState) => {
-		alert(JSON.stringify(getState()));
-		dispatch({type : "CREATE_JOB", data: data});
-		/*return {
-			type: CREATE_JOB,
-			
-		};*/
-	}
-}
-
-export function getBook() {
-    return (dispatch, getState) => {
-    	//alert(JSON.stringify(getState()));
-    	/*if (getState().services.length != []){
-    		alert('not null');
-    		dispatch({ type: "SERVICES_LOADED" });
-    	}*/
-    	 
-    	//alert('null');
-        dispatch({type : "SERVICES_STARTED"});
-        
-        fetch('http://localhost/loop/Reliable/api/service/read.php')
-            .then(response => response.json())
-            .then(json => dispatch({type : "SERVICES_SUCCEEDED", payload : json}))
-            .catch(error => dispatch({type : "SERVICES_FAILED", error : error}));    
-    };
-}
 
 export function registerCustomer(data) {
 	return (dispatch, getState) => {
@@ -124,17 +75,19 @@ export function registerCustomer(data) {
     };
 }
 
-function userLoggedIn(isLoggedIn, id) {
+function userLoggedIn(isLoggedIn, id, userType) {
 	let d = new Date();
     let minutes = 525600;
     d.setTime(d.getTime() + (minutes*60*1000));
 
     cookie.save('ah-token-id', id, { path: '/', expires:  d});
+    cookie.save('ah-token-type', userType, { path: '/', expires:  d});
     //cookie.save('type', user.type, { path: '/', expires: d });
 	return {
 		type: USER_LOGGED_IN,
 		isLoggedIn,
-		id
+		id,
+		userType
 	}
 }
 
@@ -160,8 +113,8 @@ function setRegisterError(registerError) {
 	}
 }
 
-export function register(firstname, lastname, email, password) {	
-	let data = {firstname: firstname, lastname: lastname, email: email, password: password}
+export function register(firstname, lastname, dob, contact, email, password) {	
+	let data = {firstname: firstname, lastname: lastname, dob: dob, contact: contact, email: email, password: password}
 	//alert(JSON.stringify(data));
 
 	return (dispatch, getState) => {
@@ -169,7 +122,7 @@ export function register(firstname, lastname, email, password) {
 		dispatch(setRegisterSuccess(false));
 		dispatch(setRegisterError(null));
 
-        fetch('http://localhost/loop/Reliable/api/authenticate/create.php', 
+        fetch(backendUrl + '/api/authenticate/create.php', 
 		{
 		    method: "POST",
 		    headers: {
@@ -184,7 +137,7 @@ export function register(firstname, lastname, email, password) {
             		if (response.success) {
             			dispatch(setRegisterSuccess(true));
             			dispatch(userLoggedIn(true, response.id));
-            			browserHistory.push('/account/jobs');
+            			browserHistory.push('/');
             		}else{
             			let message = new Error(response.message);
             			dispatch(setRegisterError(message));
@@ -195,6 +148,16 @@ export function register(firstname, lastname, email, password) {
     };
 }
 
+
+export function logout() {
+	cookie.remove('ah-token-id', { path: '/' });
+	cookie.remove('ah-token-type', { path: '/' });
+	return (dispatch, getState) => {
+        dispatch({type : "SET_LOGOUT"});
+        browserHistory.push('/');
+    }
+	
+}
 
 //login 
 function setLoginPending(isLoginPending) {
@@ -218,32 +181,7 @@ function setLoginError(loginError) {
 	}
 }
 
-/*function callLoginApi(email, password, callback) {
-	setTimeout(() => {
-		if (email === 'admin@example.com' && password === 'admin') {
-			return callback(null);
-		}else {
-			return callback(new Error('Invalid email and password'));
-		}
-	}, 1000);
-}
 
-export function login(email, password) {
-	return dispatch => {
-		dispatch(setLoginPending(true));
-		dispatch(setLoginSuccess(false));
-		dispatch(setLoginError(null));
-
-		callLoginApi(email, password, error => {
-			dispatch(setLoginPending(false));
-			if (!error) {
-				dispatch(setLoginSuccess(true));
-			}else{
-				dispatch(setLoginError(error));
-			}
-		});
-	}
-}*/
 
 
 export function login(email, password) {	
@@ -253,7 +191,7 @@ export function login(email, password) {
 		dispatch(setLoginSuccess(false));
 		dispatch(setLoginError(null));
 
-        fetch('http://localhost:8081/sendmail', 
+        fetch(backendUrl + '/api/authenticate/login.php', 
 		{
 		    method: "POST",
 		    headers: {
@@ -267,8 +205,8 @@ export function login(email, password) {
             		dispatch(setLoginPending(false));
             		if (response.success) {
             			dispatch(setLoginSuccess(true));
-            			dispatch(userLoggedIn(true, response.id));
-            			browserHistory.push('/account/jobs');
+            			dispatch(userLoggedIn(true, response.id, response.type));
+            			browserHistory.push('/');
             		}else{
             			let message = new Error(response.message);
             			dispatch(setLoginError(message));
@@ -279,13 +217,44 @@ export function login(email, password) {
     };
 }
 
-/*
-export function login(data) {
-	alert(JSON.stringify(data));
+//job details
+
+function setBookAppoinmentPending(isBookAppoinmentPending) {
+	return {
+		type: SET_BOOK_APPOINMENT_PENDING,
+		isBookAppoinmentPending
+	}
+}
+
+function setBookAppoinmentSuccess(isBookAppoinmentSuccess) {
+	return {
+		type: SET_BOOK_APPOINMENT_SUCCESS,
+		isBookAppoinmentSuccess
+	}
+}
+
+function setBookAppoinmentError(bookAppoinmentError) {
+	return {
+		type: SET_BOOK_APPOINMENT_ERROR,
+		bookAppoinmentError
+	}
+}
+
+export function bookAppoinment(type, date, time, reason) {
 	return (dispatch, getState) => {
-		
-        dispatch({type : "REQUEST_STARTED"});
-        fetch('http://localhost/loop/Reliable/api/authenticate/login.php', 
+
+		let data = {
+			id: 1,//cookie.load(id)
+			type: type,
+			date_time: date + " " + time,
+			reason: reason
+		}
+		//alert(JSON.stringify(data));
+        dispatch(setBookAppoinmentPending(true));
+		dispatch(setBookAppoinmentSuccess(false));
+		dispatch(setBookAppoinmentError(null));
+
+        fetch(backendUrl + '/api/appoinment/create.php', 
 		{
 		    method: "POST",
 		    headers: {
@@ -294,71 +263,19 @@ export function login(data) {
 		    body: queryString.stringify(data)
 		})
             .then(response => response.json())
-            .then(json => dispatch({type : "REQUEST_SUCCEEDED", payload : json}))
-            .catch(error => dispatch({type : "REQUEST_FAILED", error : error}));    
+            .then(
+            	response => {
+            		dispatch(setBookAppoinmentPending(false));
+            		if (response.success) {
+            			dispatch(setBookAppoinmentSuccess(true));
+            		}else{
+            			let message = new Error(response.message);
+            			dispatch(setBookAppoinmentError(message));
+            		}
+            	}
+            )
+            .catch(error => dispatch({type : "REQUEST_FAILED", error : error}));    //need to be worked on 
     };
-}
-
-*/
-
-//job details
-
-function setJobDetails(title, description, stage, start, budget) {
-	let jobDetails = {title: title, description: description, stage: stage, start: start, budget: budget }
-	return {
-		type: SET_JOB_DETAILS,
-		jobDetails
-	}
-}
-
-function setJobDetailsPending(isJobDetailsPending) {
-	return {
-		type: SET_JOB_DETAILS_PENDING,
-		isJobDetailsPending
-	}
-}
-
-function setJobDetailsSuccess(isJobDetailsSuccess) {
-	return {
-		type: SET_JOB_DETAILS_SUCCESS,
-		isJobDetailsSuccess
-	}
-}
-
-function setJobDetailsError(jobDetailsError) {
-	return {
-		type: SET_JOB_DETAILS_ERROR,
-		jobDetailsError
-	}
-}
-
-function callJobDetailsApi(title, description, stage, start, budget, callback) {
-	setTimeout(() => {
-		if (title && description && stage && start && budget) {
-			return callback(null);
-		}else {
-			return callback(new Error('Please fill in all required fields'));
-		}
-	}, 1000);
-}
-
-export function jobDetails(title, description, stage, start, budget) {
-	return dispatch => {
-		dispatch(setJobDetailsPending(true));
-		dispatch(setJobDetailsSuccess(false));
-		dispatch(setJobDetailsError(null));
-
-		callJobDetailsApi(title, description, stage, start, budget, error => {
-			dispatch(setJobDetailsPending(false));
-			if (!error) {
-				dispatch(setJobDetails(title, description, stage, start, budget));
-				dispatch(setJobDetailsSuccess(true));
-				browserHistory.push('/contactdetails');
-			}else{
-				dispatch(setJobDetailsError(error));
-			}
-		});
-	}
 }
 
 //contact details
@@ -420,18 +337,18 @@ export function contactDetails(contact, street_number, street, suburb, city, sta
 	}*/
 
 	return (dispatch, getState) => {
-		let jobDetails = getState().jobDetails.jobDetails;
-		if (jobDetails == null){
+		let BookAppoinment = getState().BookAppoinment.BookAppoinment;
+		if (BookAppoinment == null){
 			browserHistory.push('/request');
 			return;
 		}
 
 		let data = {
-			title: jobDetails.title, 
-			description: jobDetails.description, 
-			stage: jobDetails.stage, 
-			start: jobDetails.start, 
-			budget: jobDetails.budget, 
+			title: BookAppoinment.title, 
+			description: BookAppoinment.description, 
+			stage: BookAppoinment.stage, 
+			start: BookAppoinment.start, 
+			budget: BookAppoinment.budget, 
 			contact: contact, 
 			street: street_number + " " + street,
 			suburb: suburb,
@@ -475,43 +392,43 @@ export function contactDetails(contact, street_number, street, suburb, city, sta
 //get my jobs
 
 
-function setMyJobs(myJobs) {
+function setAppoinments(appoinments) {
 	return {
-		type: SET_MY_JOBS,
-		myJobs
+		type: SET_APPOINMENTS,
+		appoinments
 	}
 }
 
-function setMyJobsPending(isMyJobsPending) {
+function setAppoinmentsPending(isAppoinmentsPending) {
 	return {
-		type: SET_MY_JOBS_PENDING,
-		isMyJobsPending
+		type: SET_APPOINMENTS_PENDING,
+		isAppoinmentsPending
 	}
 }
 
-function setMyJobsSuccess(isMyJobsSuccess) {
+function setAppoinmentsSuccess(isAppoinmentsSuccess) {
 	return {
-		type: SET_MY_JOBS_SUCCESS,
-		isMyJobsSuccess
+		type: SET_APPOINMENTS_SUCCESS,
+		isAppoinmentsSuccess
 	}
 }
 
-function setMyJobsError(myJobsError) {
+function setAppoinmentsError(appoinmentsError) {
 	return {
-		type: SET_MY_JOBS_ERROR,
-		myJobsError
+		type: SET_APPOINMENTS_ERROR,
+		appoinmentsError
 	}
 }
 
-export function myJobs() {
+export function appoinments() {
 	let data = {id: 1};
 	return (dispatch, getState) => {
 
-        dispatch(setMyJobsPending(true));
-		dispatch(setMyJobsSuccess(false));
-		dispatch(setMyJobsError(null));
+        dispatch(setAppoinmentsPending(true));
+		dispatch(setAppoinmentsSuccess(false));
+		dispatch(setAppoinmentsError(null));
 
-        fetch('http://localhost/loop/Reliable/api/job/read.php', 
+        fetch(backendUrl + '/api/appoinment/read.php', 
 		{
 		    method: "POST",
 		    headers: {
@@ -522,13 +439,13 @@ export function myJobs() {
             .then(response => response.json())
             .then(
             	response => {
-            		dispatch(setMyJobsPending(false));
+            		dispatch(setAppoinmentsPending(false));
             		if (response.success) {
-            			dispatch(setMyJobsSuccess(true));
-            			dispatch(setMyJobs(response.records));
+            			dispatch(setAppoinmentsSuccess(true));
+            			dispatch(setAppoinments(response.records));
             		}else{
             			let message = new Error(response.message);
-            			dispatch(setMyJobsError(message));
+            			dispatch(setAppoinmentsError(message));
             		}
             	}
             )

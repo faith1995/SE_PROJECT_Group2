@@ -3,13 +3,14 @@ import { Router, Route, Link, IndexLink, hashHistory, browserHistory, IndexRoute
 import Select from 'react-select';
 
 import { connect } from 'react-redux';
-import { login } from '../../actions/actions';
+import { bookAppoinment } from '../../actions/actions';
 
-class LoginComponent extends React.Component {
+class AppoinmentComponent extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            email: "",
+            type: null,
+            reason: "",
             password: "",
             submitted: false,
             error: false,
@@ -29,8 +30,8 @@ class LoginComponent extends React.Component {
         window.scrollTo(0,0);
     }
 
-    startChange(val) {
-        this.setState({start: val});
+    typeChange(val) {
+        this.setState({type: val.value});
     }
 
     handleInputChange(e) {
@@ -43,7 +44,7 @@ class LoginComponent extends React.Component {
 
     onSave(e) {
         e.preventDefault();
-        this.props.login(this.state.email, this.state.password);
+        this.props.bookAppoinment(this.state.type, this.date.value, this.time.value, this.state.reason);
     }
     
     
@@ -67,18 +68,18 @@ class LoginComponent extends React.Component {
         }
 
         let options = [
-            { value: '1', label: 'Personal Account' },
-            { value: '2', label: 'Tradesperson' },
-            { value: '3', label: 'Suggestion'},
-            { value: '4', label: 'Complaint'},
-            { value: '6', label: 'Other'}
+            { value: 'Tooth Cleaning', label: 'Tooth cleaning' },
+            { value: 'Tooth Decay', label: 'Tooth decay' },
+            { value: 'Tooth Removal', label: 'Tooth removal'},
+            { value: 'Fractured Teeth', label: 'Fractured teeth'},
+            { value: 'Dental Braces', label: 'Dental braces'}
         ];
 
         //const { dispatch, loginResult } = this.props;
 
-        let {isLoginPending, isLoginSuccess, loginError } = this.props;
+        let {isBookAppoinmentPending, isBookAppoinmentSuccess, bookAppoinmentError } = this.props;
 
-        let btnLogin = (isLoginPending) ? 
+        let btnLogin = (isBookAppoinmentPending) ? 
             <button className="btn btn-primary btn-block" type="button" disabled>
                 <span className="fa fa-spinner fa-spin"></span> Please wait...
             </button>
@@ -108,8 +109,8 @@ class LoginComponent extends React.Component {
                                                 cleaable="true"
                                                 searchable={false}
                                                 placeholder="Select.."
-                                                value={this.state.start}
-                                                onChange={this.startChange.bind(this)}
+                                                value={this.state.type}
+                                                onChange={this.typeChange.bind(this)}
                                                 required
                                             />
                                         </div>
@@ -118,7 +119,7 @@ class LoginComponent extends React.Component {
                                     <div className="col-sm-12">
                                         <div className="form-group">
                                             <label className="col-form-label">Appoinent date  *</label>
-                                            <div className='input-group date' id='datetimepicker1'>
+                                            <div className='input-group date' id='datetimepicker3'>
                                                 <input 
                                                     type='text' 
                                                     className="form-control" 
@@ -151,12 +152,22 @@ class LoginComponent extends React.Component {
                                                 </span>
                                             </div>
                                         </div>
-                                    </div>                     
+                                    </div>  
+
+                                    <div className="col-sm-12">
+                                        <div className="form-group">
+                                            <label >Issues or concerns *</label>
+                                            <textarea 
+                                                className="form-control" 
+                                                name="reason"
+                                                rows="4" 
+                                                placeholder="Issues or concerns."
+                                                value={this.state.reason}
+                                                onChange={this.handleInputChange}
+                                            ></textarea>
+                                        </div>
+                                    </div>                   
                                 </div>
-
-
-
-                                    
 
                                 <div className="text-center mt-2">
                                     {/*<button type="button" className="btn btn-primary btn-block" type="submit" style={{backgroundColor: '#2a92c7', borderColor: '#2a92c7'}}>
@@ -167,14 +178,10 @@ class LoginComponent extends React.Component {
 
                                 <div className="text-center mt-2">
                                     {/*isLoginPending && <div>Please wait...</div>*/}    
-                                    {isLoginSuccess && <div>Success.</div>}
-                                    {loginError && <div>{loginError.message}</div>}
+                                    {isBookAppoinmentSuccess && <div>Success.</div>}
+                                    {bookAppoinmentError && <div>{bookAppoinmentError.message}</div>}
                                 </div>
 
-                                <div className="text-center mt-2">
-                                    <p className="pt-2" >Don't have an account? <Link to="/register" style={url}> Register</Link></p>
-                                    <Link className="pt-2" to="/reset" style={url}>Forgot password</Link>    
-                                </div>
                             </form>
                         </div>
                     </div>     
@@ -187,16 +194,16 @@ class LoginComponent extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        isLoginPending: state.login.isLoginPending,
-        isLoginSuccess: state.login.isLoginSuccess,
-        loginError: state.login.loginError
+        isBookAppoinmentPending: state.bookAppoinment.isBookAppoinmentPending,
+        isBookAppoinmentSuccess: state.bookAppoinment.isBookAppoinmentSuccess,
+        bookAppoinmentError: state.bookAppoinment.bookAppoinmentError
     };
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        login: (email, password) => dispatch(login(email, password))
+        bookAppoinment: (type, date, time, reason) => dispatch(bookAppoinment(type, date, time, reason))
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(AppoinmentComponent);

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Router, Route, Link, IndexLink, hashHistory, browserHistory, IndexRoute  } from 'react-router';
 import { connect } from 'react-redux';
-import { addTodo, getBook } from '../../actions/actions';
+//import {  } from '../../actions/actions';
 
 import Select from 'react-select';
 
@@ -138,7 +138,7 @@ class Search extends React.Component {
 }
 
 
-class HomeComponent extends React.Component {
+export default class HomeComponent extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -152,16 +152,16 @@ class HomeComponent extends React.Component {
 
     componentDidMount(){
         window.scrollTo(0,0);
-        const { dispatch, visibleServices } = this.props;
+        //const { dispatch, visibleServices } = this.props;
         //alert(visibleServices.length);
         //if (visibleServices.length == 0)
             //dispatch(getBook());
-        dispatch(getBook());
+        //dispatch(getBook());
     }
 
     componentWillReceiveProps(props) { 
         //alert(props);   
-        this.setState({services: props.visibleServices});
+        //this.setState({services: props.visibleServices});
     }
     
     render() {
@@ -195,7 +195,7 @@ class HomeComponent extends React.Component {
             color: '#2a92c7'
         }
 
-        const { dispatch, visibleServices } = this.props;
+        
         //alert(visibleServices);
         return (
             <div className="fixed-padding-top">
@@ -223,11 +223,3 @@ class HomeComponent extends React.Component {
         );
     }
 }
-
-function select(state) {
-    return {
-        visibleServices: state.services
-    }
-}
-
-export default connect(select)(HomeComponent);

@@ -39,11 +39,11 @@ app.post('/sendmail', function(req, res) {
     // setup email data with unicode symbols
     let mailOptions = {
         from: '<785976@students.wits.ac.za>', // sender address
-        to: 'teenomanhema@gmail.com',
+        to: mail.email,
         //to: 'bar@blurdybloop.com, baz@blurdybloop.com', // list of receivers
-        subject: mail.name + '  ✔', // Subject line
-        text: 'Testing with oauth2 access tokens ?', // plain text body
-        //html: '<b>Name: '+mail.name+'</b><br/> <b>Email: '+mail.email+'</b><br/> <b>Message: '+mail.message+'</b><br/> ' // html body
+        subject: 'Welcome to AvoHealth  ✔', // Subject line
+        //text: 'Testing with oauth2 access tokens ?', // plain text body
+        html: '<b>Welcome '+mail.firstname+'</b><br/> <b>Email: '+mail.email+'</b><br/><br/> ' // html body
     };
 
     // send mail with defined transport object

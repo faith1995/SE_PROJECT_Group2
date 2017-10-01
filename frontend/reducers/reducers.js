@@ -1,16 +1,16 @@
 import { combineReducers } from 'redux';
 import { 
-	ADD_TODO, ADD_JOBDETAILS, ADD_CONTACTDETAILS,
+	ADD_TODO, ADD_BookAppoinment, ADD_CONTACTDETAILS,
 	SERVICES_STARTED, SERVICES_SUCCEEDED,  SERVICES_FAILED, SERVICES_LOADED, 
 	REQUEST_STARTED, REQUEST_SUCCEEDED,  REQUEST_FAILED,
 	REGISTER_CUSTOMER, CREATE_JOB,
-	POST_MYJOBSTARTED, POST_MYJOBSUCCEEDED, POST_MYJOBFAILED,
-	SET_LOGIN_PENDING, SET_LOGIN_SUCCESS, SET_LOGIN_ERROR,
+	POST_AppoinmentsTARTED, POST_AppoinmentsUCCEEDED, POST_MYJOBFAILED,
+	SET_LOGIN_PENDING, SET_LOGIN_SUCCESS, SET_LOGIN_ERROR, SET_LOGOUT,
 	SET_REGISTER_PENDING, SET_REGISTER_SUCCESS, SET_REGISTER_ERROR,
 	USER_LOGGED_IN, 
-	SET_JOB_DETAILS, SET_JOB_DETAILS_PENDING, SET_JOB_DETAILS_SUCCESS, SET_JOB_DETAILS_ERROR,
+	SET_BOOK_APPOINMENT_PENDING, SET_BOOK_APPOINMENT_SUCCESS, SET_BOOK_APPOINMENT_ERROR,
 	SET_CONTACT_DETAILS_PENDING, SET_CONTACT_DETAILS_SUCCESS, SET_CONTACT_DETAILS_ERROR,
-	SET_MY_JOBS, SET_MY_JOBS_PENDING, SET_MY_JOBS_SUCCESS, SET_MY_JOBS_ERROR
+	SET_APPOINMENTS, SET_APPOINMENTS_PENDING, SET_APPOINMENTS_SUCCESS, SET_APPOINMENTS_ERROR
 }  from '../actions/actions';
 
 import cookie from 'react-cookie';
@@ -41,9 +41,9 @@ function todos(state = [], action) {
 	}
 }
 
-/*function jobDetails(state = [], action){
+/*function BookAppoinment(state = [], action){
 	switch (action.type) {
-		case ADD_JOBDETAILS:
+		case ADD_BookAppoinment:
 			return action.data
 
 		default:
@@ -160,6 +160,13 @@ function login(state = {
 				loginError: action.loginError
 			});
 
+		case SET_LOGOUT:
+			return Object.assign({}, state, {
+				isLoginPending: false,
+				isLoginSuccess: false,
+				loginError: null
+			});
+
 		default:
 			return state;
 	}
@@ -168,13 +175,22 @@ function login(state = {
 function loggedInStatus(state = 
 	{
 		isLoggedIn: (cookie.load('ah-token-id')) ? true : false, 
-		id: cookie.load('ah-token-id')
+		id: cookie.load('ah-token-id'),
+		userType: cookie.load('ah-token-type')
 	}, action) {
 	switch (action.type) {
 		case USER_LOGGED_IN:
 			return Object.assign({}, state, {
 				isLoggedIn: action.isLoggedIn,
-				id: action.id
+				id: action.id,
+				userType: action.userType
+			});
+
+		case SET_LOGOUT:
+			return Object.assign({}, state, {
+				isLoggedIn: false,
+				id: null,
+				userType: null
 			});
 
 		default:
@@ -183,31 +199,25 @@ function loggedInStatus(state =
 }
 
 
-function jobDetails(state = {
-		isJobDetailsSuccess: false,
-		isJobDetailsPending: false,
-		jobDetailsError: null,
-		jobDetails: null
+function bookAppoinment(state = {
+		isBookAppoinmentSuccess: false,
+		isBookAppoinmentPending: false,
+		bookAppoinmentError: null
 	}, action ) {
 	switch (action.type) {
-		case SET_JOB_DETAILS_PENDING:
+		case SET_BOOK_APPOINMENT_PENDING:
 			return Object.assign({}, state, {
-				isJobDetailsPending: action.isJobDetailsPending
+				isBookAppoinmentPending: action.isBookAppoinmentPending
 			});
 
-		case SET_JOB_DETAILS_SUCCESS:
+		case SET_BOOK_APPOINMENT_SUCCESS:
 			return Object.assign({}, state, {
-				isJobDetailsSuccess: action.isJobDetailsSuccess
+				isBookAppoinmentSuccess: action.isBookAppoinmentSuccess
 			});
 
-		case SET_JOB_DETAILS_ERROR:
+		case SET_BOOK_APPOINMENT_ERROR:
 			return Object.assign({}, state, {
-				jobDetailsError: action.jobDetailsError
-			});
-
-		case SET_JOB_DETAILS:
-			return Object.assign({}, state, {
-				jobDetails: action.jobDetails
+				bookAppoinmentError: action.BookAppoinmentError
 			});
 
 		default:
@@ -243,31 +253,31 @@ function contactDetails(state = {
 }
 
 
-function myJobs(state = {
-		isMyJobsSuccess: false,
-		isMyJobsPending: false,
-		myJobsError: null,
-		myJobs: null
+function appoinments(state = {
+		isAppoinmentsSuccess: false,
+		isAppoinmentsPending: false,
+		appoinmentsError: null,
+		appoinments: null
 	}, action ) {
 	switch (action.type) {
-		case SET_MY_JOBS_PENDING:
+		case SET_APPOINMENTS_PENDING:
 			return Object.assign({}, state, {
-				isMyJobsPending: action.isMyJobsPending
+				isAppoinmentsPending: action.isAppoinmentsPending
 			});
 
-		case SET_MY_JOBS_SUCCESS:
+		case SET_APPOINMENTS_SUCCESS:
 			return Object.assign({}, state, {
-				isMyJobsSuccess: action.isMyJobsSuccess
+				isAppoinmentsSuccess: action.isAppoinmentsSuccess
 			});
 
-		case SET_MY_JOBS_ERROR:
+		case SET_APPOINMENTS_ERROR:
 			return Object.assign({}, state, {
-				myJobsError: action.myJobsError
+				appoinmentsError: action.appoinmentsError
 			});
 
-		case SET_MY_JOBS:
+		case SET_APPOINMENTS:
 			return Object.assign({}, state, {
-				myJobs: action.myJobs
+				appoinments: action.appoinments
 			});
 
 		default:
@@ -284,9 +294,9 @@ const todoApp = combineReducers({
 	register,
 	login,
 	loggedInStatus,
-	jobDetails,
+	bookAppoinment,
 	contactDetails,
-	myJobs
+	appoinments
 });
 
 export default todoApp;

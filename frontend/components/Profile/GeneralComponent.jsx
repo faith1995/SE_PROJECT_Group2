@@ -61,13 +61,13 @@ class RegisterComponent extends React.Component {
             </button>;
 
         return (
-            <div className="fixed-padding-top">
+            <div className="">
 
                 <div className="container my-sm-4 my-2">
                     <div className="row">
                         <div className="col-lg-8 col-lg-offset-4" style={{margin: '0 auto', float: 'none'}}>
                             <form style={{margin: '0 auto', float: 'none'}} onSubmit={this.onSave.bind(this)} >
-                                <h3 className="" style={{fontSize: '1.5rem', fontWeight: '600'}} >Create account</h3> 
+                                <h3 className="" style={{fontSize: '1.5rem', fontWeight: '600'}} >General</h3> 
                                 <div className="form-row">
                                     <div className="col-sm-12">
                                         <div className="form-group">
