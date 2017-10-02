@@ -1,6 +1,8 @@
 import React from 'react';
 import { Router, Route, Link, IndexLink, hashHistory, browserHistory, IndexRoute  } from 'react-router';
 
+import FrontdeskAppoinment from './FrontdeskAppoinment.jsx';
+
 import ReactHighcharts from 'react-highcharts';
 
 
@@ -164,6 +166,10 @@ export default class SpecialistComponent extends React.Component {
                             </button>
                         </div>
                     </div>
+
+                    
+                    <FrontdeskAppoinment />
+                       
 
                     <div className="row">
                         <div className="col-sm-12 my-4">
