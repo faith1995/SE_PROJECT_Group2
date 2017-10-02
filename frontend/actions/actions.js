@@ -55,9 +55,9 @@ export const SET_APPOINMENTS_ERROR = 'SET_APPOINMENTS_ERROR';
 
 let nextTodoId = 0;
 
-let backendUrl = 'http://localhost/SE_PROJECT_Group2/backend';
+//let backendUrl = 'http://localhost/SE_PROJECT_Group2/backend';
 
-//let backendUrl = 'https://silverspace.co.za/avohealth';
+let backendUrl = 'https://silverspace.co.za/avohealth';
 
 
 export function registerCustomer(data) {
@@ -94,6 +94,25 @@ function userLoggedIn(isLoggedIn, id, userType) {
 }
 
 //register
+function sendmail(email, firstname, lastname) {
+	let data = {email: email, firstname: firstname, lastname: lastname}
+	return (dispatch, getState) => {
+        //dispatch({type : "REQUEST_STARTED"});
+        fetch('http://avohealth.avospace.xyz/api/sendmail', 
+		{
+		    method: "POST",
+		    headers: {
+			    'Content-Type': 'application/x-www-form-urlencoded'
+			},
+		    body: queryString.stringify(data)
+		})
+            .then(response => response.json())
+            .then(response => {
+            	alert(response);
+            });    
+    };
+}
+
 function setRegisterPending(isRegisterPending) {
 	return {
 		type: SET_REGISTER_PENDING,
@@ -139,6 +158,7 @@ export function register(firstname, lastname, dob, contact, email, password) {
             		if (response.success) {
             			dispatch(setRegisterSuccess(true));
             			dispatch(userLoggedIn(true, response.id, response.type));
+            			dispatch(sendmail(email, firstname, lastname));
             			browserHistory.push('/');
             		}else{
             			let message = new Error(response.message);

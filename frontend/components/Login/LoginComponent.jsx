@@ -84,6 +84,7 @@ class LoginComponent extends React.Component {
                                                 placeholder="Email" 
                                                 value={this.state.email}
                                                 onChange={this.handleInputChange}
+                                                required
                                             />
                                         </div>
                                     </div>
@@ -98,6 +99,7 @@ class LoginComponent extends React.Component {
                                                 placeholder="Password" 
                                                 value={this.state.password}
                                                 onChange={this.handleInputChange}
+                                                required
                                             />
                                         </div>
                                     </div>                      

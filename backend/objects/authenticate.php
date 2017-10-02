@@ -12,6 +12,7 @@ class Authenticate{
     public $lastname;
     public $dob;
     public $contact;
+    public $type;
     
 	public function __construct($db){
         $this->conn = $db;
@@ -26,7 +27,8 @@ class Authenticate{
                         user_dob=:dob,
                         user_contact=:contact,
                         user_email=:email,
-                        user_password=:password;
+                        user_password=:password,
+                        user_type=:type;
                     INSERT INTO PATIENT
                         SET patient_id=LAST_INSERT_ID()";
 
@@ -40,6 +42,7 @@ class Authenticate{
             $this->contact = htmlspecialchars(strip_tags($this->contact));
             $this->email = htmlspecialchars(strip_tags($this->email));
             $this->password = htmlspecialchars(strip_tags($this->password));
+            $this->type = htmlspecialchars(strip_tags($this->type));
             
             //bind values
             $stmt->bindParam(":firstname", $this->firstname);
@@ -48,6 +51,7 @@ class Authenticate{
             $stmt->bindParam(":contact", $this->contact);
             $stmt->bindParam(":email", $this->email);
             $stmt->bindParam(":password", $this->password);
+            $stmt->bindParam(":type", $this->type);
 
 
             //execute query
@@ -66,7 +70,7 @@ class Authenticate{
 
     public function login(){
         try{
-            $query = "SELECT user_id as id FROM USER 
+            $query = "SELECT user_id as id, user_type as type FROM USER 
                         WHERE (user_email=:email) AND (user_password=:password) 
                         LIMIT 1";
 

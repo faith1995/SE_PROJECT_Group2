@@ -7,11 +7,15 @@ var compression = require('compression');
 var app = express();
 var server = http.createServer(app);
 
+var bodyParser = require('body-parser');
+
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
+
+
 
 /*app.get('*.js', function (req, res, next) {
   res.setHeader('Content-Type', 'text/javascript');
@@ -37,7 +41,13 @@ app.get('*', function (req, res) {
   res.sendFile(path.join(__dirname, 'public', 'index.html'))
 });
 
-app.post('/sendmail', function(req, res) {
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+
+app.post('/api/sendmail', function(req, res) {
+    console.log('ddd');
     console.log(req.body);
     let mail = req.body;
     const nodemailer = require('nodemailer');

@@ -27,6 +27,7 @@
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         extract($row);
         $users_arr["id"] = $id;
+        $users_arr["type"] = $type;
         /*$users_arr["record"] = array(
             "id" => $id
         );*/

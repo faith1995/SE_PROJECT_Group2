@@ -28,7 +28,7 @@ export default class ResetComponent extends React.Component {
                                     <div className="col-sm-12">
                                         <div className="form-group">
                                             <label className="col-form-label">Email *</label>
-                                            <input type="text" className="form-control" placeholder="Email" />
+                                            <input type="text" className="form-control" placeholder="Email" required />
                                         </div>
                                     </div>                      
                                 </div>

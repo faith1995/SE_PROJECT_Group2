@@ -20,5 +20,7 @@
 	echo $schema->specialist() ? "true" : "false";
 	echo $schema->appoinment() ? "true" : "false";
 	echo $schema->dump_user() ? "true" : "false";
+	echo $schema->dump_patient() ? "true" : "false";
+	echo $schema->dump_specialist() ? "true" : "false";
 	
 ?>

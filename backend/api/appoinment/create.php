@@ -23,6 +23,7 @@
     $reason = $_POST['reason'];
     $status = "Unconfirmed";//$_POST['status'];
     
+    
 
     //set appoinment property values
     $appoinment->id = $id;

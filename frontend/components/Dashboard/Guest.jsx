@@ -199,23 +199,165 @@ export default class HomeComponent extends React.Component {
         //alert(visibleServices);
         return (
             <div className="fixed-padding-top">
-                <div className="jumbotron jumbotron-fluid" style={jumbotron} >
-                    <div className="container" style={{padding: '0 15px'}}>
-                        <div className="text-center" style={{color: 'white'}}>
-                            <h1 className="color-white weight-bold" style={{fontSize: '2.5rem', fontWeight: '700'}} >AvoHealth</h1>
-                        </div>
-                        {/*<button onClick={book => dispatch(getBook())}>Service</button>*/}
-                        {/*<Search result={visibleServices} />*/}
-                        <br/><br/><br/>
+                <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">
+                  <ol className="carousel-indicators">
+                    <li data-target="#carouselExampleIndicators" data-slide-to="0" className="active"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                  </ol>
+                  <div className="carousel-inner" role="listbox">
+                    <div className="carousel-item active">
+                      <img className="d-block img-fluid banner-image" src="../dental1.jpg" alt="First slide" />
+                      <div className="carousel-caption d-none d-md-block">
+                        <h3>Family Dentistry</h3>
+                        <p>Healthy Smiles for Everyone!</p>
+                      </div>
                     </div>
+                    <div className="carousel-item">
+                      <img className="d-block img-fluid banner-image" src="../dental2.jpg" alt="Second slide" />
+                      <div className="carousel-caption d-none d-md-block">
+                        <h3>Brighten</h3>
+                        <p>Your Smile, Build Your Confidence</p>
+                      </div>
+                    </div>
+                    <div className="carousel-item">
+                      <img className="d-block img-fluid banner-image" src="../dental3.jpg" alt="Third slide" />
+                      <div className="carousel-caption d-none d-md-block">
+                        <h3>Quality Care</h3>
+                        <p>Your health is our priority</p>
+                      </div>
+                    </div>
+                  </div>
+                  <a className="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span className="sr-only">Previous</span>
+                  </a>
+                  <a className="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span className="sr-only">Next</span>
+                  </a>
                 </div>
 
+
                 <div className="container">
-                    <div className="row">
-                        <div className="col-sm-12 text-center">
-                            <h1>Landing Page Content</h1>    
+                    <div className="row text-center my-3">
+                        <div className="col-sm-3">
+                            <h5>Appoinments</h5>
+                            <p>Patients information is well managed and secure.</p>
+                        </div>
+
+                        <div className="col-sm-3">
+                            <h5>Practice Management</h5>
+                            <p>Patients information is well managed and secure.</p>
+                        </div>
+
+                        <div className="col-sm-3">
+                            <h5>Invoicing & Accounting</h5>
+                            <p>Simple, clean, precise invoices and statements are send to our patients.</p>
+                        </div>
+
+                        <div className="col-sm-3">
+                            <h5>Remainders</h5>
+                            <p>Email remainders for patient appointments and important changes in the facility.</p>
                         </div>
                     </div>
+
+                    <div className="row text-center my-3">
+                        <div className="col-sm-12 my 2">
+                            <h4>Services</h4>
+                        </div>
+                        <div className="col-sm-4">
+                            <div className="rotate-link my-2"><img src="http://smiledentalclinic.co.za/wp-content/uploads/restorative-dentistry-icon.png" alt="Restorative Dentistry" width="125" className="rotate-icon" /></div>
+                            <h5 className="mt-2" >Restorative Dentistry</h5>
+                            <span>Extractions</span><br/>
+                            <span>Root Canal Treatment</span><br/>
+                            <span>Dental Fillings</span><br/>
+                            <span>Extractions</span><br/>
+                        </div>
+
+                        <div className="col-sm-4">
+                            <div className="rotate-link my-2"><img src="http://smiledentalclinic.co.za/wp-content/uploads/restorative-dentistry-icon.png" alt="Restorative Dentistry" width="125" className="rotate-icon" /></div>
+                            <h5 className="mt-2" >Cosmetic Dentistry</h5>
+                            <span>Dental Crowns</span><br/>
+                            <span>Dental Bridges</span><br/>
+                            <span>Dental Veneers</span><br/>
+                            <span>Teeth Whitening</span><br/>
+                        </div>
+
+                        <div className="col-sm-4">
+                            <div className="rotate-link my-2"><img src="http://smiledentalclinic.co.za/wp-content/uploads/restorative-dentistry-icon.png" alt="Restorative Dentistry" width="125" className="rotate-icon" /></div>
+                            <h5 className="mt-2" >Restorative Dentistry</h5>
+                            <span>Extractions</span><br/>
+                            <span>Root Canal Treatment</span><br/>
+                            <span>Dental Veneers</span><br/>
+                            <span>Extractions</span><br/>
+                        </div>
+                    </div>
+
+                    {/*<div className="row">
+                        <section id="our-services">
+                            <div className="container-rotate">
+                                <div className="row2">
+                                <div className="col-lg-12 text-center">
+                                    <h1>Our Services</h1>
+                                </div> 
+                                </div>
+                                 <div className="row">
+                                   <div className="col-sm-6">
+                                    <a href="#" className="rotate-link"><img src="http://smiledentalclinic.co.za/wp-content/uploads/restorative-dentistry-icon.png" alt="Restorative Dentistry" width="125" className="rotate-icon" /></a>
+                                    <div className="center">
+                                    <h5>Restorative Dentistry</h5>
+                                   </div>
+                                    <ul>
+                                        <li>Extractions</li>
+                                        <li>Root Canal Treatment</li>
+                                        <li>Dental Fillings </li>
+                                    </ul>
+                                </div>
+                                  <div className="col-sm-6">
+                                    <a href="#" className="rotate-link"><img src="http://smiledentalclinic.co.za/wp-content/uploads/cosmetic-dentistry-icon.png" alt="Comsmetic Dentistry" width="125" className="rotate-icon" /></a>
+                                    <div className="center">
+                                    <h5>Cosmetic Dentistry</h5>
+                                     </div>
+                                    <ul>
+                                        <li>Dental Crowns</li>
+                                        <li>Dental Bridges</li>
+                                        <li>Dental Veneers </li>
+                                        <li>Teeth Whitening </li>
+                                    </ul>
+                                </div>
+                                <div className="col-sm-6">
+                                    <a href="#" className="rotate-link"><img src="http://smiledentalclinic.co.za/wp-content/uploads/sedation-dentistry-icon.png" alt="Sedation Dentistry" width="125" className="rotate-icon" /></a>
+                                    <div className="center">
+                                    <h5>Sedation Dentistry</h5>
+                                     </div>
+                                    <ul>
+                                        <li>Conscious</li>
+                                        <li>General Anaesthesia</li>
+                                    </ul>
+                                </div>
+                                <div className="col-sm-6">
+                                    <a href="#" className="rotate-link"><img src="http://smiledentalclinic.co.za/wp-content/uploads/prosthetic-dentistry-icon.png" alt="Prosthetic Dentistry" width="125" className="rotate-icon" /></a>
+                                    <div className="center">
+                                    <h5>Prosthetic Dentistry</h5>
+                                     </div>
+                                    <ul>
+                                        <li>Full and partial dentures</li>
+                                    </ul>
+                                </div>
+                                <div className="col-sm-6">
+                                    <a href="#" className="rotate-link"><img src="http://smiledentalclinic.co.za/wp-content/uploads/preventative-dentistry-icon.png" alt="Preventative Dentistry" width="125" className="rotate-icon" /></a>
+                                    <div className="center">
+                                    <h5>Preventative Dentistry</h5>
+                                     </div>
+                                    <ul>
+                                        <li>Scale and Polish</li>
+                                    </ul>
+                                </div>
+                              </div>
+                              </div>
+                        </section>
+                    </div>*/}
                 </div>
 
                 <br/><br/><br/>

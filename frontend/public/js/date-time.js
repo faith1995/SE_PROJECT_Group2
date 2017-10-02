@@ -4,6 +4,7 @@ $(function () {
     $('#datetimepicker1').datetimepicker({
         format: 'YYYY-MM-DD',
         //minDate: today,
+        defaultDate: moment().add('years', -21),
         ignoreReadonly: true,
         allowInputToggle: true,
         icons: {
@@ -21,6 +22,7 @@ $(function () {
     $('#datetimepicker3').datetimepicker({
         format: 'YYYY-MM-DD',
         minDate: today,
+        defaultDate: moment().add('days', 1),
         ignoreReadonly: true,
         allowInputToggle: true,
         icons: {

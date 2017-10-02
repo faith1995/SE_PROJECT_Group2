@@ -79,6 +79,7 @@ class RegisterComponent extends React.Component {
                                                 placeholder="Firstname" 
                                                 value={this.state.firstname}
                                                 onChange={this.handleInputChange}
+                                                required
                                             />
                                         </div>
                                     </div>
@@ -93,6 +94,7 @@ class RegisterComponent extends React.Component {
                                                 placeholder="Lastname"
                                                 value={this.state.lastname}
                                                 onChange={this.handleInputChange} 
+                                                required
                                             />
                                         </div>
                                     </div>
@@ -109,8 +111,8 @@ class RegisterComponent extends React.Component {
                                                     className="form-control" 
                                                     placeholder="Date of Birth" 
                                                     ref={(dob) => this.dob = dob}
-                                                    required
                                                     readOnly
+                                                    required
                                                 />
                                                 <span className="input-group-addon">
                                                     <span className="fa fa-calendar"></span>
@@ -129,6 +131,7 @@ class RegisterComponent extends React.Component {
                                                 placeholder="Contact number" 
                                                 value={this.state.contact}
                                                 onChange={this.handleInputChange}
+                                                required
                                             />
                                         </div>
                                     </div>
@@ -146,6 +149,7 @@ class RegisterComponent extends React.Component {
                                                 placeholder="Email" 
                                                 value={this.state.email}
                                                 onChange={this.handleInputChange}
+                                                required
                                             />
                                         </div>
                                     </div>
@@ -160,6 +164,7 @@ class RegisterComponent extends React.Component {
                                                 placeholder="Password" 
                                                 value={this.state.password}
                                                 onChange={this.handleInputChange}
+                                                required
                                             />
                                             <small id="passwordHelpBlock" className="form-text text-muted">
                                                 Minimum 6 characters                                

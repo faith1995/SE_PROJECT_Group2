@@ -137,9 +137,9 @@ export default class SpecialistComponent extends React.Component {
                                 <b>2 <br/>Appoinments Today</b>
                             </div>
                             <hr />
-                            <Link to="/specialist/appoinments" className="btn btn-outline-success btn-block" type="submit" >
+                            <button onClick={() => browserHistory.push("/specialist/appoinments")} className="btn btn-outline-success btn-block" type="submit" >
                                 View Appoinments
-                            </Link>
+                            </button>
                         </div>
 
                         <div className="col-sm-4 text-center my-2">

@@ -144,8 +144,8 @@ class AppoinmentComponent extends React.Component {
                                                     className="form-control" 
                                                     placeholder="Time" 
                                                     ref={(time) => this.time = time}
-                                                    required
                                                     readOnly
+                                                    required
                                                 />
                                                 <span className="input-group-addon">
                                                     <span className="fa fa-clock-o"></span>
@@ -164,6 +164,7 @@ class AppoinmentComponent extends React.Component {
                                                 placeholder="Issues or concerns."
                                                 value={this.state.reason}
                                                 onChange={this.handleInputChange}
+                                                required
                                             ></textarea>
                                         </div>
                                     </div>                   

@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({
 });*/
 
 
-app.post('/sendmail', function(req, res) {
+app.post('/api/sendmail', function(req, res) {
     console.log(req.body);
     let mail = req.body;
     const nodemailer = require('nodemailer');
@@ -57,7 +57,7 @@ app.post('/sendmail', function(req, res) {
     res.send('Email Sent');
 })
 
-var server = app.listen(8081, function() {
+var server = app.listen(3018, function() {
     var host = server.address().address;
     var port = server.address().port;
 
