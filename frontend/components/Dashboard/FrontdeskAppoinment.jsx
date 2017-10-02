@@ -20,7 +20,7 @@ class Appoinment extends React.Component {
                     
                     <span href="#" className="badge badge-dark my-2">{this.props.appoinment.status}</span>
                     <h4>{this.props.appoinment.firstname} {this.props.appoinment.lastname}</h4>
-                    <h5>Tooth Decay</h5>
+                    <h5>{this.props.appoinment.type}</h5>
                     <p>{this.props.appoinment.reason}</p>
                     <div className="row">
                         <div className="col-sm-6 my-2">
