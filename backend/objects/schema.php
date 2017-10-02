@@ -312,6 +312,29 @@ class Schema{
         }
     }
 
+    public function dump_appoinment() {
+        try{
+            $query = "INSERT INTO APPOINMENT (patient_id, appoinment_type, appoinment_datetime, appoinment_reason, appoinment_status) VALUES
+            (2, 'Tooth Decay', '2017-10-13 09:00', 'Loose teeth', 'Unconfirmed'),
+            (2, 'Dental Braces', '2017-10-23 12:00', 'Need new braces', 'Confirmed')";
+
+            //prepare query for execution
+            $stmt = $this->conn->prepare($query);
+
+            //Execute the query
+            if($stmt->execute()){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+        catch(PDOException $exception){
+            die('ERROR' . $exception->getMessage());
+            return $query . "<br>" . $exception->getMessage();
+        }
+    }
+
 
 }
 ?>

@@ -24,5 +24,7 @@
 	echo $schema->dump_patient() ? "true" : "false";
 	echo $schema->dump_frontdesk() ? "true" : "false";
 	echo $schema->dump_specialist() ? "true" : "false";
+	echo $schema->dump_appoinment() ? "true" : "false";
+	
 	
 ?>
