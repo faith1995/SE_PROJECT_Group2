@@ -135,6 +135,31 @@ class Schema{
             die('ERROR' . $exception->getMessage());
             return $query . "<br>" . $exception->getMessage();
         }
+    } 
+
+    public function frontdesk() {
+        try{
+            $query = "CREATE TABLE IF NOT EXISTS FRONTDESK (
+            frontdesk_id BIGINT UNSIGNED,
+            PRIMARY KEY(frontdesk_id),
+            FOREIGN KEY(frontdesk_id) REFERENCES USER (user_id)
+            )";
+
+            //prepare query for execution
+            $stmt = $this->conn->prepare($query);
+
+            //Execute the query
+            if($stmt->execute()){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+        catch(PDOException $exception){
+            die('ERROR' . $exception->getMessage());
+            return $query . "<br>" . $exception->getMessage();
+        }
     }    
 
     public function specialist() {
@@ -198,7 +223,7 @@ class Schema{
         try{
             $query = "INSERT INTO USER (user_id, user_firstname, user_lastname, user_email, user_password, user_type, user_image) VALUES
             (1, 'John', 'Smith', 'john@gmail.joburg', '123456', 'P', 'https://storage.googleapis.com/avo-insta/thumbnail/1b2292f584cce6a56d9f020677c5e95a.jpg'),
-            (2, 'Jack', 'Hammer', 'jack@gmail.joburg', '123456', 'P', 'https://storage.googleapis.com/avo-insta/thumbnail/1b2292f584cce6a56d9f020677c5e95a.jpg'),
+            (2, 'Jack', 'Hammer', 'jack@gmail.joburg', '123456', 'F', 'https://storage.googleapis.com/avo-insta/thumbnail/1b2292f584cce6a56d9f020677c5e95a.jpg'),
             (3, 'Sarah', 'Thor', 'sarah@gmail.joburg', '123456', 'S', 'https://storage.googleapis.com/avo-insta/thumbnail/74deb179239097331e5c53f02ac72e46.jpg'),
             (4, 'Jim', 'Cameron', 'jimcameron@gmail.joburg', '123456', 'S', 'https://storage.googleapis.com/avo-insta/thumbnail/1b2292f584cce6a56d9f020677c5e95a.jpg')";
 
@@ -223,6 +248,28 @@ class Schema{
         try{
             $query = "INSERT INTO PATIENT (patient_id) VALUES
             (1),
+            (2)";
+
+            //prepare query for execution
+            $stmt = $this->conn->prepare($query);
+
+            //Execute the query
+            if($stmt->execute()){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+        catch(PDOException $exception){
+            die('ERROR' . $exception->getMessage());
+            return $query . "<br>" . $exception->getMessage();
+        }
+    }
+
+    public function dump_frontdesk() {
+        try{
+            $query = "INSERT INTO FRONTDESK (frontdesk_id) VALUES
             (2)";
 
             //prepare query for execution

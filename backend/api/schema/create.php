@@ -17,10 +17,12 @@
 	echo $schema->address() ? "true" : "false";
 	echo $schema->user() ? "true" : "false";
 	echo $schema->patient() ? "true" : "false";
+	echo $schema->frontdesk() ? "true" : "false";
 	echo $schema->specialist() ? "true" : "false";
 	echo $schema->appoinment() ? "true" : "false";
 	echo $schema->dump_user() ? "true" : "false";
 	echo $schema->dump_patient() ? "true" : "false";
+	echo $schema->dump_frontdesk() ? "true" : "false";
 	echo $schema->dump_specialist() ? "true" : "false";
 	
 ?>
