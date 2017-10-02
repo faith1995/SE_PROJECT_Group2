@@ -13,10 +13,19 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.get('*.js', function (req, res, next) {
+/*app.get('*.js', function (req, res, next) {
   res.setHeader('Content-Type', 'text/javascript');
   req.url = req.url + '.gz';
   res.set('Content-Encoding', 'gzip');
+  next();
+});*/
+
+app.get('*.js', function (req, res, next) {
+  //res.setHeader('X-Content-Type-Options': 'nosniff');
+  res.setHeader('Content-Type', 'text/javascript');
+  //res.setHeader('Cache-Control', 'no-cache');
+  //req.url = req.url + '.gz';
+  //res.set('Content-Encoding', 'gzip');
   next();
 });
 
@@ -28,8 +37,46 @@ app.get('*', function (req, res) {
   res.sendFile(path.join(__dirname, 'public', 'index.html'))
 });
 
+app.post('/sendmail', function(req, res) {
+    console.log(req.body);
+    let mail = req.body;
+    const nodemailer = require('nodemailer');
+    let transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          type: 'OAuth2',
+          user: '785976@students.wits.ac.za',
+          clientId: ' 958235576899-1qo3bto5t690eh7ig99nk0tuknatu9n8.apps.googleusercontent.com ',
+          clientSecret: ' 8fQCkashFHucSPYCqeEdypBk ',
+          refreshToken: '1/cFvh7qzJ01kPacKt_rmfOn_dtstigLeqouH2q1MScLo',
+          accessToken: 'ya29.GlvVBEZ3vgmmOKGJGDfq9lfi11N34qHIJGoxu9ozNc7Fc2FtidAbQq2tt8bp7lpjbXciGxbmOxDpMmaNWoHKaOR4r7wa1M6DmQTElESxj-Hpqw3BaVF-4tynBu4T',
+          expires: 3600
+        }
+    });
 
-var PORT = process.env.PORT || 8081
+    // setup email data with unicode symbols
+    let mailOptions = {
+        from: '<785976@students.wits.ac.za>', // sender address
+        to: mail.email,
+        //to: 'bar@blurdybloop.com, baz@blurdybloop.com', // list of receivers
+        subject: 'Welcome to AvoHealth  ✔', // Subject line
+        //text: 'Testing with oauth2 access tokens ?', // plain text body
+        html: '<b>Welcome '+mail.firstname+'</b><br/> <b>Email: '+mail.email+'</b><br/><br/> ' // html body
+    };
+
+    // send mail with defined transport object
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            return console.log(error);
+        }
+        console.log('Message %s sent: %s', info.messageId, info.response);
+    });
+
+    res.send('Email Sent');
+});
+
+
+var PORT = process.env.PORT || 3022
 
 
 /* Start server */

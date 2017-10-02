@@ -2,6 +2,7 @@ import React from 'react';
 import { Router, Route, Link, IndexLink, hashHistory, browserHistory, IndexRoute  } from 'react-router';
 
 import Specialist from './Specialist.jsx';
+import Patient from './Patient.jsx';
 import Guest from './Guest.jsx';
 
 import { connect } from 'react-redux';
@@ -21,7 +22,18 @@ class DashboardComponent extends React.Component {
 
         let {isLoggedIn, id, userType } = this.props;
         if (isLoggedIn) {
-            return <Specialist />;
+            //return <Specialist />;
+            switch (userType) {
+                case "P":
+                    return <Patient />
+                    break;
+                case "S":
+                    return <Specialist />;
+
+                default:
+                    return null;
+            }
+
         }else{
             return <Guest />;
         }

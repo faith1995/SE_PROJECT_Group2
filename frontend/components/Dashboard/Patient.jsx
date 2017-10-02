@@ -137,30 +137,30 @@ export default class SpecialistComponent extends React.Component {
                                 <b>2 <br/>Appoinments Today</b>
                             </div>
                             <hr />
-                            <Link to="/specialist/appoinments" className="btn btn-outline-success btn-block" type="submit" >
+                            <button className="btn btn-outline-success btn-block" type="submit" >
                                 View Appoinments
-                            </Link>
+                            </button>
                         </div>
 
                         <div className="col-sm-4 text-center my-2">
                             <div className="" style={dashTotal} >
                                 <span className="fa fa-calendar" style={ionSize} ></span><br/>
-                                <b>3 <br/>Active Patients</b>
+                                <b>3 <br/>Prescriptions</b>
                             </div>
                             <hr />
                             <button className="btn btn-outline-success btn-block" type="submit" >
-                                View Patients
+                                View Prescriptions
                             </button>
                         </div>
 
                         <div className="col-sm-4 my-2">
                             <div className="" style={dashTotal} >
                                 <span className="fa fa-calendar" style={ionSize} ></span><br/>
-                                <b>6 <br/>Upcoming Appoinments</b>
+                                <b>6 <br/>Pending Invoices</b>
                             </div>
                             <hr />
                             <button className="btn btn-outline-success btn-block" type="submit" >
-                                View Appoinments
+                                View Invoices
                             </button>
                         </div>
                     </div>

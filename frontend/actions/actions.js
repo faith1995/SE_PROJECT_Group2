@@ -57,6 +57,8 @@ let nextTodoId = 0;
 
 let backendUrl = 'http://localhost/SE_PROJECT_Group2/backend';
 
+//let backendUrl = 'https://silverspace.co.za/avohealth';
+
 
 export function registerCustomer(data) {
 	return (dispatch, getState) => {
@@ -136,7 +138,7 @@ export function register(firstname, lastname, dob, contact, email, password) {
             		dispatch(setRegisterPending(false));
             		if (response.success) {
             			dispatch(setRegisterSuccess(true));
-            			dispatch(userLoggedIn(true, response.id));
+            			dispatch(userLoggedIn(true, response.id, response.type));
             			browserHistory.push('/');
             		}else{
             			let message = new Error(response.message);
