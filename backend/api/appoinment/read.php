@@ -23,7 +23,9 @@
                 "type" => $type,
                 "status" => $status,
                 "date_time" => $date_time,
-                "reason" => $reason
+                "reason" => $reason,
+                "firstname" => $firstname,
+                "lastname" => $lastname
             );
             array_push($appoinments_arr['records'], $appoinment_item);
         }

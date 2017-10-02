@@ -60,8 +60,10 @@ class Appoinment{
     public function read(){
         try{
             $query = "SELECT appoinment_id as id, appoinment_type as type, appoinment_status as status, appoinment_datetime as date_time,
-                        appoinment_reason as reason
-                        FROM APPOINMENT";
+                        appoinment_reason as reason, PATIENT.patient_id, USER.user_firstname as firstname, USER.user_lastname as lastname
+                        FROM APPOINMENT
+                        INNER JOIN PATIENT ON APPOINMENT.patient_id = PATIENT.patient_id
+                        LEFT JOIN USER ON APPOINMENT.patient_id = USER.user_id";
 
             //prepare query for excecution
             $stmt = $this->conn->prepare($query);
