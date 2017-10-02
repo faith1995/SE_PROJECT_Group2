@@ -2,6 +2,7 @@ import React from 'react';
 import { Router, Route, Link, IndexLink, hashHistory, browserHistory, IndexRoute  } from 'react-router';
 
 import Specialist from './Specialist.jsx';
+import Frontdesk from './Frontdesk.jsx';
 import Patient from './Patient.jsx';
 import Guest from './Guest.jsx';
 
@@ -26,6 +27,9 @@ class DashboardComponent extends React.Component {
             switch (userType) {
                 case "P":
                     return <Patient />
+                    break;
+                case "F":
+                    return <Frontdesk />
                     break;
                 case "S":
                     return <Specialist />;

@@ -81,12 +81,7 @@ class SpecialistNav extends React.Component {
             <div>
                 
                 <ul className="navbar-nav mr-auto mt-2 mt-lg-0 mobile-im-v" >
-                    <li className="nav-item mx-2">
-                        <Link className="nav-link text-center p-0" to="/contact" style={fs085em}>
-                            <span className="ion-ios-telephone" style={fs2em}></span>
-                            Contact
-                        </Link>
-                    </li>
+                    
                     
                     {/*<li className="nav-item mx-2">
                         <Link className="nav-link text-center p-0" to="/login"  style={fs085em}>
@@ -146,12 +141,116 @@ class SpecialistNav extends React.Component {
 
                 <div className="form-inline my-2 my-lg-0 desktop-nav">
                     <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
+             
                         <li className="nav-item">
-                            <Link className="nav-link text-center" to="/contact" style={fs085em}>
-                                <span className="ion-ios-telephone" style={fs2em}></span>
-                                Contact
-                            </Link>
+                            <span className="nav-link text-center" onClick={() => this.props.logout()} style={fs085em}>
+                                <span className="ion-log-out" style={fs2em}></span>
+                                Logout
+                            </span>
                         </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+        );
+    }
+}
+
+class FrontdeskNav extends React.Component {
+    render() {
+
+        let fs2em = {
+            fontSize: '2em',
+            display: 'block',
+            lineHeight: '1'
+        }
+
+        let fsnb2em = {
+            fontSize: '1em'
+        }
+
+        let fs085em = {
+            fontSize: '0.75em'
+        }
+
+        let inf = {
+            display: 'inline-flex',
+            flexDirection: 'row',
+            msFlexDirection: 'row'
+        }
+        return (
+            
+    <nav className="navbar navbar-expand-lg navbar-light fixed-top" style={{backgroundColor: 'white', borderBottom: '1px solid forestgreen'}} >
+        <div className="container">
+            <Link className="navbar-brand" to="/" style={{fontFamily: '"Dosis", arial, tahoma, verdana', color: 'rgb(34, 139, 34, 1)'}} >
+                AvoHealth
+            </Link>
+            <div>
+                
+                <ul className="navbar-nav mr-auto mt-2 mt-lg-0 mobile-im-v" >
+                    
+                    
+                    {/*<li className="nav-item mx-2">
+                        <Link className="nav-link text-center p-0" to="/login"  style={fs085em}>
+                            <span className="ion-log-in" style={fs2em}></span>
+                            Login
+                        </Link>
+                    </li>*/}
+
+                    <li className="nav-item mx-2">
+                        <span className="nav-link text-center" onClick={() => this.props.logout()} style={fs085em}>
+                            <span className="ion-log-out" style={fs2em}></span>
+                            Logout
+                        </span>
+                    </li>
+                    
+                    <li className="nav-item ml-2">
+                        <Link className="nav-link text-center p-0" to="#" style={fs085em} data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                            <span className="ion-navicon-round" style={fs2em}></span>
+                            Menu
+                        </Link>
+                    </li>
+                </ul>
+               
+            </div>
+
+            <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
+
+                    <ul className="navbar-nav mr-auto mt-2 mt-lg-0 desktop-nav">
+                        {/*<li className="nav-item">
+                            <Link className="nav-link" to="/">Home</Link>
+                        </li>*
+
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/patient/profile">Profile</Link>
+                        </li>*/}
+                        
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/specialist/appoinments">Appoinments</Link>
+                        </li>
+
+                        <li className="nav-item">
+                            <Link className="nav-link" to="#">Patients</Link>
+                        </li>
+
+                        
+                    </ul>
+
+                    <ul className="navbar-nav mr-auto mt-2 mt-lg-0 mobile-nav">
+                        
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/specialist/appoinments">Appoinments</Link>
+                        </li>
+
+                        <li className="nav-item">
+                            <Link className="nav-link" to="#">Patients</Link>
+                        </li>
+                    </ul>
+
+                <div className="form-inline my-2 my-lg-0 desktop-nav">
+                    <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
              
                         <li className="nav-item">
                             <span className="nav-link text-center" onClick={() => this.props.logout()} style={fs085em}>
@@ -297,12 +396,7 @@ class PatientNav extends React.Component {
 
                 <div className="form-inline my-2 my-lg-0 desktop-nav">
                     <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
-                        <li className="nav-item">
-                            <Link className="nav-link text-center" to="/contact" style={fs085em}>
-                                <span className="ion-ios-telephone" style={fs2em}></span>
-                                Contact
-                            </Link>
-                        </li>
+                        
              
                         <li className="nav-item">
                             <span className="nav-link text-center" onClick={() => this.props.logout()} style={fs085em}>
@@ -372,12 +466,6 @@ class GuestNav extends React.Component {
             <div>
                 
                 <ul className="navbar-nav mr-auto mt-2 mt-lg-0 mobile-im-v" >
-                    <li className="nav-item mx-2">
-                        <Link className="nav-link text-center p-0" to="/contact" style={fs085em}>
-                            <span className="ion-ios-telephone" style={fs2em}></span>
-                            Contact
-                        </Link>
-                    </li>
                     
                     <li className="nav-item mx-2">
                         <Link className="nav-link text-center p-0" to="/login"  style={fs085em}>
@@ -399,11 +487,11 @@ class GuestNav extends React.Component {
             <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
 
                     <ul className="navbar-nav mr-auto mt-2 mt-lg-0 desktop-nav">
-                        <li className="nav-item">
+                        {/*<li className="nav-item">
                             <Link className="nav-link" to="/">Home</Link>
                         </li>
                         
-                        <li className="nav-item">
+                        {/*<li className="nav-item">
                             <Link className="nav-link" to="#">Features</Link>
                         </li>
 
@@ -413,11 +501,11 @@ class GuestNav extends React.Component {
                         
                         <li className="nav-item">
                             <Link className="nav-link" to="#">Blog</Link>
-                        </li>
+                        </li>*/}
                         
                     </ul>
 
-                    <ul className="navbar-nav mr-auto mt-2 mt-lg-0 mobile-nav">
+                    {/*<ul className="navbar-nav mr-auto mt-2 mt-lg-0 mobile-nav">
                         <li className="nav-item">
                             <Link className="nav-link" to="/">Home <span className="ion-ios-arrow-right float-right" style={fsnb2em}></span></Link>
                         </li>
@@ -433,16 +521,10 @@ class GuestNav extends React.Component {
                         <li className="nav-item">
                             <Link className="nav-link" to="#">Blog <span className="ion-ios-arrow-right float-right" style={fsnb2em}></span></Link>
                         </li>
-                    </ul>
+                    </ul>*/}
 
                 <div className="form-inline my-2 my-lg-0 desktop-nav">
                     <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
-                        <li className="nav-item">
-                            <Link className="nav-link text-center" to="/contact" style={fs085em}>
-                                <span className="ion-ios-telephone" style={fs2em}></span>
-                                Contact
-                            </Link>
-                        </li>
              
                         <li className="nav-item">
                             <Link className="nav-link text-center" to="/login" style={fs085em}>
@@ -468,6 +550,8 @@ class LoggedNav extends React.Component {
             case "P":
                 return <PatientNav logout={this.props.logout.bind(this)} />
                 break;
+            case "F":
+                return <FrontdeskNav logout={this.props.logout.bind(this)} />;
             case "S":
                 return <SpecialistNav logout={this.props.logout.bind(this)} />;
 
